@@ -162,6 +162,42 @@ if IsDisabled then
 end)
 end)
 
+Section:NewToggle("anti void", "makes a part you can walk on", function(state)
+    if state then
+       local part = Instance.new("Part")
+part.BrickColor = BrickColor.new("Medium Stone Grey")
+
+part.CFrame = CFrame.new(0, 75, 0)
+
+part.Parent = game.workspace
+
+part.Anchored = true
+
+part.Size = Vector3.new(1000, 1, 1000)
+    else
+        local plr = game:GetService('Players').LocalPlayer.Character
+local ScreenGui = Instance.new("ScreenGui")
+local OpenFrame = Instance.new("Frame")
+local Open = Instance.new("TextButton")
+local Frame = Instance.new("Frame")
+local BeautyA = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local BeautyA_2 = Instance.new("Frame")
+local TextLabel_2 = Instance.new("TextLabel")
+local AIM = Instance.new("TextButton")
+local CTP = Instance.new("TextButton")
+local Close = Instance.new("TextButton")
+local MI = Instance.new("TextButton")
+local MVIP = Instance.new("TextButton")
+local Plate = Instance.new("TextButton")
+local Shop = Instance.new("TextButton")
+local VIP = Instance.new("TextButton")
+local Walls = Instance.new("TextButton")
+
+game.workspace.Part:remove()
+    end
+end)
+
 Section:NewButton("esp", "sigma esp by loopy", function()
 local hgh = Instance.new("Highlight")
 for i, v in game.Players:GetPlayers() do
