@@ -391,13 +391,19 @@ local plr = game:GetService('Players').LocalPlayer.Character
 plr.HumanoidRootPart.CFrame = CFrame.new(60, 260.5, 0)
 end)
 
+Section:NewButton("set cords", "set", function()
+here = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+end)
+
+Section:NewButton("go to cords", "go", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(here)
+end)
 
 local Tab = Window:NewTab("kill aura")
 
 local Section = Tab:NewSection("kill aura")
 
 Section:NewButton("kill aura", "stick ppl to your sword", function()
--- https://youtube.com/c/ImpulseExploits
 
 
 local active = true
