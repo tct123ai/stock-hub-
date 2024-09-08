@@ -137,7 +137,7 @@ end)
 
 Section:NewButton("hit boxes", "cant turn off", function()
 game:GetService('RunService').RenderStepped:Connect(function()
-local HeadSize = 30
+local HeadSize = 19
 local IsDisabled = true 
 
 if IsDisabled then
@@ -366,11 +366,11 @@ Section:NewKeybind("toggle UI", "sigma sigma", Enum.KeyCode.F, function()
 	Library:ToggleUI()
 end)
 
-Section:NewButton("remove all anti cheat", "remove", function()
-game.Players.LocalPlayer.PlayerGui.Extra.AntiSploitClient2:Destroy()
-	wait(1)
-	game.Players.LocalPlayer.PlayerGui.Extra.AntiSploitClient:Destroy()
-end)
+-- Section:NewButton("remove all anti cheat", "remove", function()
+--game.Players.LocalPlayer.PlayerGui.Extra.AntiSploitClient2:Destroy()
+--	wait(1)
+--	game.Players.LocalPlayer.PlayerGui.Extra.AntiSploitClient:Destroy()
+-- end)
 
 local Tab = Window:NewTab("tps")
 
@@ -394,7 +394,7 @@ end)
 
 local Tab = Window:NewTab("kill aura")
 
-local Section = Tab:NewSection("remove anti cheat first")
+local Section = Tab:NewSection("kill aura")
 
 Section:NewButton("kill aura", "stick ppl to your sword", function()
 -- https://youtube.com/c/ImpulseExploits
