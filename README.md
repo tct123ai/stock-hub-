@@ -137,7 +137,7 @@ end)
 
 Section:NewButton("hit boxes", "cant turn off", function()
 game:GetService('RunService').RenderStepped:Connect(function()
-local HeadSize = 20
+local HeadSize = 30
 local IsDisabled = true 
 
 if IsDisabled then
@@ -366,6 +366,12 @@ Section:NewKeybind("toggle UI", "sigma sigma", Enum.KeyCode.F, function()
 	Library:ToggleUI()
 end)
 
+Section:NewButton("remove all anti cheat", "remove", function()
+game.Players.LocalPlayer.PlayerGui.Extra.AntiSploitClient2:Destroy()
+	wait(1)
+	game.Players.LocalPlayer.PlayerGui.Extra.AntiSploitClient:Destroy()
+end)
+
 local Tab = Window:NewTab("tps")
 
 local Section = Tab:NewSection("TPs")
@@ -388,7 +394,7 @@ end)
 
 local Tab = Window:NewTab("kill aura")
 
-local Section = Tab:NewSection("kill aura")
+local Section = Tab:NewSection("remove anti cheat first")
 
 Section:NewButton("kill aura", "stick ppl to your sword", function()
 -- https://youtube.com/c/ImpulseExploits
@@ -456,7 +462,7 @@ TextBox.BackgroundTransparency = 1.000
 TextBox.Position = UDim2.new(0.600000024, 0, 0, 0)
 TextBox.Size = UDim2.new(0.400000006, 0, 0.200000003, 0)
 TextBox.Font = Enum.Font.SourceSans
-TextBox.Text = "9"
+TextBox.Text = "15"
 TextBox.TextColor3 = Color3.fromRGB(255, 76, 76)
 TextBox.TextScaled = true
 TextBox.TextSize = 14.000
