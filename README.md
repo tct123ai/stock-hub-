@@ -57,23 +57,15 @@ end
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = cpos
 end)
 
-Section:NewButton("kill all borders of first", "not that good", function()
-local condition = true 
-while condition == true do
- function tpToRandom()
-    local AllPlayers = {} --make the variable table that will contain all the player names
-    for i, v in next, game.Players:GetPlayers() do --get players
-        table.insert(AllPlayers, v.Name) --insert the players names into the "p" table
-    end
-    local choiceIndex = AllPlayers[math.random(1,#AllPlayers)] --pick the player itself, by generating a random number and picking the player with that position number
-    if AllPlayers == game.Players.LocalPlayer.Character.Name then --check if the selected player's name is the same name as localplayer
-        choiceIndex = AllPlayers[math.random(1,#AllPlayers)] --if true, then pick a new player from "p" table
-    else --if not, then set the localplayers cframe to the selected players cframe
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace[choiceIndex].HumanoidRootPart.CFrame --teleport the player to the selected player
-    end
-end tpToRandom()
- wait(1)
+Section:NewButton("auto farm wins", "not that good", function()
+while true do
+    wait(0.1)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Lobby.MiddleRoom.SpawnPlace.MiddlePart.CFrame
 end
+
+game.workspace.Borders.InvisibleBorder:remove()
+
+game.workspace.Lobby.KillPlates:remove()
 end)
 
 local Tab = Window:NewTab("player")
