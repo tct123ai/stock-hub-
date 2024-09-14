@@ -1,12 +1,12 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = Library.CreateLib("STOCK hub", "BloodTheme")
+local Window = Library.CreateLib("Centro de STOCK", "BloodTheme")
 
-local Tab = Window:NewTab("auto farms")
+local Tab = Window:NewTab("granjas de automóviles")
 
-local Section = Tab:NewSection("auto farms")
+local Section = Tab:NewSection("granjas de automóviles")
 
-Section:NewButton("ore auto farm", "get ores", function()
+Section:NewButton("ore auto farm", "conseguir minerales", function()
     local cpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 
 local stuff = workspace:getDescendants()
@@ -23,7 +23,7 @@ end
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = cpos
 end)
 
-Section:NewButton("break all blocks", "break", function()
+Section:NewButton("romper todos los bloques", "break", function()
     local cpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 
 local stuff = workspace:getDescendants()
@@ -57,7 +57,7 @@ end
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = cpos
 end)
 
-Section:NewButton("auto farm wins", "not that good", function()
+Section:NewButton("Las granjas automotrices ganan", "not that good", function()
 while true do
     wait(0.1)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Lobby.MiddleRoom.SpawnPlace.MiddlePart.CFrame
@@ -108,11 +108,11 @@ end
     end
 end)
 
-Section:NewSlider("jump power", "more then 60 you die", 60, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+Section:NewSlider("potencia de salto", "more then 60 you die", 60, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
 game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
 end)
 
-Section:NewButton("xray", "cant turn off", function()
+Section:NewButton("radiografía", "cant turn off", function()
 local function makeAllPartsTransparent()
   
     for _, object in pairs(workspace:GetDescendants()) do
@@ -127,7 +127,7 @@ end
 makeAllPartsTransparent()
 end)
 
-Section:NewButton("hit boxes", "cant turn off", function()
+Section:NewButton("cajas de impacto", "cant turn off", function()
 game:GetService('RunService').RenderStepped:Connect(function()
 local HeadSize = 19
 local IsDisabled = true 
@@ -154,7 +154,7 @@ if IsDisabled then
 end)
 end)
 
-Section:NewToggle("anti void", "makes a part you can walk on", function(state)
+Section:NewToggle("anti-vacío", "makes a part you can walk on", function(state)
     if state then
        local part = Instance.new("Part")
 part.BrickColor = BrickColor.new("Medium Stone Grey")
@@ -206,7 +206,7 @@ local Tab = Window:NewTab("extra")
 
 local Section = Tab:NewSection("extra")
 
-Section:NewButton("ctrl + click to tp", "get ores", function()
+Section:NewButton("Ctrl + clic para tp", "Ctrl + clic para tp", function()
 -- CTRL+CLICK TP
 local Plr = game:GetService("Players").LocalPlayer
 
@@ -225,7 +225,7 @@ Plr.Character:MoveTo(Mouse.Hit.p)
 end)
 end)
 
-Section:NewButton("e to fly", "shart", function()
+Section:NewButton("y volar", "shart", function()
 	repeat wait() 
 	until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:findFirstChild("Torso") and game.Players.LocalPlayer.Character:findFirstChild("Humanoid") 
 local mouse = game.Players.LocalPlayer:GetMouse() 
@@ -308,7 +308,7 @@ end)
 Fly()
 end)
 
-Section:NewButton("remove all invis borders", "remove", function()
+Section:NewButton("eliminar todos los bordes invisibles", "remove", function()
 local plr = game:GetService('Players').LocalPlayer.Character
 local ScreenGui = Instance.new("ScreenGui")
 local OpenFrame = Instance.new("Frame")
@@ -331,7 +331,7 @@ local Walls = Instance.new("TextButton")
 game.workspace.Borders.InvisibleBorder:remove()
 end)
 
-Section:NewButton("remove all kill borders", "remove", function()
+Section:NewButton("eliminar todos los bordes de eliminación", "remove", function()
 local plr = game:GetService('Players').LocalPlayer.Character
 local ScreenGui = Instance.new("ScreenGui")
 local OpenFrame = Instance.new("Frame")
@@ -354,7 +354,7 @@ local Walls = Instance.new("TextButton")
 game.workspace.Lobby.KillPlates:remove()
 end)
 
-Section:NewKeybind("toggle UI", "sigma sigma", Enum.KeyCode.F, function()
+Section:NewKeybind("Cambiar interfaz de usuario", "sigma sigma", Enum.KeyCode.F, function()
 	Library:ToggleUI()
 end)
 
@@ -366,9 +366,9 @@ end)
 
 local Tab = Window:NewTab("tps")
 
-local Section = Tab:NewSection("TPs")
+local Section = Tab:NewSection("TPS")
 
-Section:NewButton("middle", "tp to mid", function()
+Section:NewButton("medio", "tp to mid", function()
 local plr = game:GetService('Players').LocalPlayer.Character
 plr.HumanoidRootPart.CFrame = CFrame.new(-8, 164, 12)
 end)
@@ -378,24 +378,24 @@ local plr = game:GetService('Players').LocalPlayer.Character
 plr.HumanoidRootPart.CFrame = CFrame.new(12, 264, 79)
 end)
 
-Section:NewButton("shop", "tp to shop", function()
+Section:NewButton("comercio", "tp to shop", function()
 local plr = game:GetService('Players').LocalPlayer.Character
 plr.HumanoidRootPart.CFrame = CFrame.new(60, 260.5, 0)
 end)
 
-Section:NewButton("set cords", "set", function()
+Section:NewButton("establecer cuerdas", "set", function()
 here = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
 end)
 
-Section:NewButton("go to cords", "go", function()
+Section:NewButton("ir a cuerdas", "go", function()
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(here)
 end)
 
-local Tab = Window:NewTab("kill aura")
+local Tab = Window:NewTab("aura de matar")
 
-local Section = Tab:NewSection("kill aura")
+local Section = Tab:NewSection("aura de matar")
 
-Section:NewButton("kill aura", "stick ppl to your sword", function()
+Section:NewButton("aura de matar", "stick ppl to your sword", function()
 
 
 local active = true
@@ -688,7 +688,7 @@ game:GetService("RunService").RenderStepped:connect(function()
 end)
 end)
 
-local Tab = Window:NewTab("credits")
+local Tab = Window:NewTab("créditos")
 
 local Section = Tab:NewSection("Loopy5418 code helped")
 
