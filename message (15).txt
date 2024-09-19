@@ -1,0 +1,414 @@
+MenuGUI = game.Players.LocalPlayer.PlayerGui.MenuGUI.Menu.Main
+
+MenuGUI = game.Players.LocalPlayer.PlayerGui.MenuGUI.Menu.Quit
+
+MenuGUI.BackgroundColor3 = Color3.new(255, 0, 0)
+
+a = game.Players.LocalPlayer.PlayerGui.MenuGUI.Menu.Main
+
+a.BackgroundColor3 = Color3.new(255, 0, 0)
+
+b = game.Players.LocalPlayer.PlayerGui.MenuGUI.Menu.Main.MenuItems.BuyMoney
+
+b.BackgroundColor3 = Color3.new(0, 0, 0)
+
+c = game.Players.LocalPlayer.PlayerGui.MenuGUI.Menu.Main.MenuItems.BuyMoney.TextLabel
+
+c.BackgroundColor3 = Color3.new(0, 1, 0)
+
+d = game.Players.LocalPlayer.PlayerGui.MenuGUI.Menu.Main.MenuItems.Changelog
+
+d.BackgroundColor3 = Color3.new(0, 0, 0)
+
+e = game.Players.LocalPlayer.PlayerGui.MenuGUI.Menu.Main.MenuItems.Changelog.TextLabel
+
+e.BackgroundColor3 = Color3.new(255, 0, 0)
+
+aa = game.Players.LocalPlayer.PlayerGui.MenuGUI.Menu.Main.MenuItems.Credits
+
+aa.BackgroundColor3 = Color3.new(0, 0, 0)
+
+bb = game.Players.LocalPlayer.PlayerGui.MenuGUI.Menu.Main.MenuItems.Credits.TextLabel
+
+bb.BackgroundColor3 = Color3.new(255, 0, 0)
+
+cc = game.Players.LocalPlayer.PlayerGui.MenuGUI.Menu.Main.MenuItems.Donate
+
+cc.BackgroundColor3 = Color3.new(0, 0, 0)
+
+dd = game.Players.LocalPlayer.PlayerGui.MenuGUI.Menu.Main.MenuItems.Donate.TextLabel
+
+dd.BackgroundColor3 = Color3.new(255, 0, 0)
+
+ee = game.Players.LocalPlayer.PlayerGui.MenuGUI.Menu.Main.MenuItems.Settings
+
+ee.BackgroundColor3 = Color3.new(0, 0, 0)
+
+ff = game.Players.LocalPlayer.PlayerGui.MenuGUI.Menu.Main.MenuItems.Settings.TextLabel
+
+ff.BackgroundColor3 = Color3.new(255, 0, 0)
+
+qq = game.Players.LocalPlayer.PlayerGui.MenuGUI.Menu.Main.MenuItems.SaveLoad
+
+qq.BackgroundColor3 = Color3.new(0, 0, 0)
+
+ww = game.Players.LocalPlayer.PlayerGui.MenuGUI.Menu.Main.MenuItems.SaveLoad.TextLabel
+
+ww.BackgroundColor3 = Color3.new(255, 0, 0)
+
+mm = game.Players.LocalPlayer.PlayerGui.MenuGUI.Open
+
+mm.BackgroundColor3 = Color3.new(255, 0, 0)
+
+
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+
+local Window = Library.CreateLib("Stock HUB BETA", "Synapse")
+
+local Tab = Window:NewTab("Player")
+
+local Section = Tab:NewSection("Player stuff")
+
+Section:NewButton("q to fly", "u fly", function()
+	repeat wait() 
+	until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:findFirstChild("Torso") and game.Players.LocalPlayer.Character:findFirstChild("Humanoid") 
+local mouse = game.Players.LocalPlayer:GetMouse() 
+repeat wait() until mouse
+local plr = game.Players.LocalPlayer 
+local torso = plr.Character.Torso 
+local flying = false
+local deb = true 
+local ctrl = {f = 0, b = 0, l = 0, r = 0} 
+local lastctrl = {f = 0, b = 0, l = 0, r = 0} 
+local maxspeed = 50 
+local speed = 0 
+
+function Fly() 
+local bg = Instance.new("BodyGyro", torso) 
+bg.P = 9e4 
+bg.maxTorque = Vector3.new(9e9, 9e9, 9e9) 
+bg.cframe = torso.CFrame 
+local bv = Instance.new("BodyVelocity", torso) 
+bv.velocity = Vector3.new(0,0.1,0) 
+bv.maxForce = Vector3.new(9e9, 9e9, 9e9) 
+repeat wait() 
+plr.Character.Humanoid.PlatformStand = true 
+if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then 
+speed = speed+.5+(speed/maxspeed) 
+if speed > maxspeed then 
+speed = maxspeed 
+end 
+elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then 
+speed = speed-1 
+if speed < 0 then 
+speed = 0 
+end 
+end 
+if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then 
+bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed 
+lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r} 
+elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then 
+bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed 
+else 
+bv.velocity = Vector3.new(0,0.1,0) 
+end 
+bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0) 
+until not flying 
+ctrl = {f = 0, b = 0, l = 0, r = 0} 
+lastctrl = {f = 0, b = 0, l = 0, r = 0} 
+speed = 0 
+bg:Destroy() 
+bv:Destroy() 
+plr.Character.Humanoid.PlatformStand = false 
+end 
+mouse.KeyDown:connect(function(key) 
+if key:lower() == "q" then 
+if flying then flying = false 
+else 
+flying = true 
+Fly() 
+end 
+elseif key:lower() == "w" then 
+ctrl.f = 1 
+elseif key:lower() == "s" then 
+ctrl.b = -1 
+elseif key:lower() == "a" then 
+ctrl.l = -1 
+elseif key:lower() == "d" then 
+ctrl.r = 1 
+end 
+end) 
+mouse.KeyUp:connect(function(key) 
+if key:lower() == "w" then 
+ctrl.f = 0 
+elseif key:lower() == "s" then 
+ctrl.b = 0 
+elseif key:lower() == "a" then 
+ctrl.l = 0 
+elseif key:lower() == "d" then 
+ctrl.r = 0 
+end 
+end)
+Fly()
+end)
+
+
+local Tab = Window:NewTab("World")
+
+local Section = Tab:NewSection("World Tools")
+
+Section:NewButton("Destroy Boulders", "Destroy Boulder!!!!!", function()
+    game.workspace.Region_Snow.PartSpawner:Destroy()
+ end)
+
+ Section:NewButton("Remove Fog", "I Not Foggy no more", function()
+    game.Lighting.Changed:connect(function()
+        game.Lighting.TimeOfDay = "12:00:00"
+        game.Lighting.FogEnd = 9999
+        game.Lighting.Brightness = 1
+    end)
+end)
+
+ local Tab = Window:NewTab("vehicle")
+
+ local Section = Tab:NewSection("Vehicle")
+
+
+ Section:NewSlider("Vehicle Speed", "Vehicle Speed", 6, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    vehiclespeedval = s
+            for i, v in next, game:GetService("Workspace").PlayerModels:GetChildren() do
+        if v:FindFirstChild("Owner") and v.Owner.Value == game.Players.LocalPlayer then
+            if v:FindFirstChild("Type") and v.Type.Value == "Vehicle" then
+                if v:FindFirstChild("Configuration") then
+                    v.Configuration.MaxSpeed.Value = s
+                end
+            end
+        end
+    end
+end)
+
+
+
+ Section:NewButton("Vehicle Fly", "Your Vehicle Flys", function()
+    local FlyKey = Enum.KeyCode.V
+        local SpeedKey = Enum.KeyCode.LeftControl
+        
+        local SpeedKeyMultiplier = 3
+        local FlightSpeed = 256
+        local FlightAcceleration = 4
+        local TurnSpeed = 16
+        
+        -- made by zach
+        
+        -- enjoy :3
+        
+        local UserInputService = game:GetService("UserInputService")
+        local StarterGui = game:GetService("StarterGui")
+        local RunService = game:GetService("RunService")
+        local Players = game:GetService("Players")
+        local User = Players.LocalPlayer
+        local Camera = workspace.CurrentCamera
+        local UserCharacter = nil
+        local UserRootPart = nil
+        local Connection = nil
+        
+        
+        workspace.Changed:Connect(function()
+            Camera = workspace.CurrentCamera
+        end)
+        
+        local setCharacter = function(c)
+            UserCharacter = c
+            UserRootPart = c:WaitForChild("HumanoidRootPart")
+        end
+        
+        User.CharacterAdded:Connect(setCharacter)
+        if User.Character then
+            setCharacter(User.Character)
+        end
+        
+        local CurrentVelocity = Vector3.new(0,0,0)
+        local Flight = function(delta)
+            local BaseVelocity = Vector3.new(0,0,0)
+            if not UserInputService:GetFocusedTextBox() then
+                if UserInputService:IsKeyDown(Enum.KeyCode.W) then
+                    BaseVelocity = BaseVelocity + (Camera.CFrame.LookVector * FlightSpeed)
+                end
+                if UserInputService:IsKeyDown(Enum.KeyCode.A) then
+                    BaseVelocity = BaseVelocity - (Camera.CFrame.RightVector * FlightSpeed)
+                end
+                if UserInputService:IsKeyDown(Enum.KeyCode.S) then
+                    BaseVelocity = BaseVelocity - (Camera.CFrame.LookVector * FlightSpeed)
+                end
+                if UserInputService:IsKeyDown(Enum.KeyCode.D) then
+                    BaseVelocity = BaseVelocity + (Camera.CFrame.RightVector * FlightSpeed)
+                end
+                if UserInputService:IsKeyDown(Enum.KeyCode.Space) then
+                    BaseVelocity = BaseVelocity + (Camera.CFrame.UpVector * FlightSpeed)
+                end
+                if UserInputService:IsKeyDown(SpeedKey) then
+                    BaseVelocity = BaseVelocity * SpeedKeyMultiplier
+                end
+            end
+            if UserRootPart then
+                local car = UserRootPart:GetRootPart()
+                if car.Anchored then return end
+                if not isnetworkowner(car) then return end
+                CurrentVelocity = CurrentVelocity:Lerp(
+                    BaseVelocity,
+                    math.clamp(delta * FlightAcceleration, 0, 1)
+                )
+                car.Velocity = CurrentVelocity + Vector3.new(0,2,0)
+                if car ~= UserRootPart then
+                    car.RotVelocity = Vector3.new(0,0,0)
+                    car.CFrame = car.CFrame:Lerp(CFrame.lookAt(
+                        car.Position,
+                        car.Position + CurrentVelocity + Camera.CFrame.LookVector
+                    ), math.clamp(delta * TurnSpeed, 0, 1))
+                end
+            end
+        end
+        
+        UserInputService.InputBegan:Connect(function(userInput,gameProcessed)
+            if gameProcessed then return end
+            if userInput.KeyCode == FlyKey then
+                if Connection then
+                    StarterGui:SetCore("SendNotification",{
+                        Title = "",
+                        Text = "Flight disabled"
+                    })
+                    Connection:Disconnect()
+                    Connection = nil
+                else
+                    StarterGui:SetCore("SendNotification",{
+                        Title = "",
+                        Text = "Flight enabled"
+                    })
+                    CurrentVelocity = UserRootPart.Velocity
+                    Connection = RunService.Heartbeat:Connect(Flight)
+                end
+            end
+        end)
+        
+        StarterGui:SetCore("SendNotification",{
+            Title = "",
+            Text = "Loaded successfully, Press V to toggle"
+        })
+end)
+
+local Tab = Window:NewTab("Land")
+
+local Section = Tab:NewSection("Land")
+
+Section:NewButton("Free Land", "Free land pay 0", function()
+    for i, v in next, game:GetService("Workspace").Properties:GetChildren() do
+        if v:FindFirstChild("Owner") and v.Owner.Value == nil then
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientPurchasedProperty:FireServer(v,
+                v.OriginSquare.Position)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.OriginSquare.CFrame + Vector3.new(0, 2, 0)
+            break
+        end
+    end
+end)
+
+Section:NewButton("Free max land", "Free land", function()
+    for s, d in pairs(workspace.Properties:GetChildren()) do
+        if d:FindFirstChild("Owner") and d:FindFirstChild("OriginSquare") and d.Owner.Value == game.Players.LocalPlayer then
+            local PlotPos = d.OriginSquare.Position
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X + 40, PlotPos.Y, PlotPos.Z))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X - 40, PlotPos.Y, PlotPos.Z))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X, PlotPos.Y, PlotPos.Z + 40))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X, PlotPos.Y, PlotPos.Z - 40))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X + 40, PlotPos.Y, PlotPos.Z + 40))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X + 40, PlotPos.Y, PlotPos.Z - 40))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X - 40, PlotPos.Y, PlotPos.Z + 40))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X - 40, PlotPos.Y, PlotPos.Z - 40))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X + 80, PlotPos.Y, PlotPos.Z))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X - 80, PlotPos.Y, PlotPos.Z))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X, PlotPos.Y, PlotPos.Z + 80))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X, PlotPos.Y, PlotPos.Z - 80))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X + 80, PlotPos.Y, PlotPos.Z + 80))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X + 80, PlotPos.Y, PlotPos.Z - 80))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X - 80, PlotPos.Y, PlotPos.Z + 80))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X - 80, PlotPos.Y, PlotPos.Z - 80))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X + 40, PlotPos.Y, PlotPos.Z + 80))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X - 40, PlotPos.Y, PlotPos.Z + 80))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X + 80, PlotPos.Y, PlotPos.Z + 40))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X + 80, PlotPos.Y, PlotPos.Z - 40))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X - 80, PlotPos.Y, PlotPos.Z + 40))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X - 80, PlotPos.Y, PlotPos.Z - 40))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X + 40, PlotPos.Y, PlotPos.Z - 80))
+            game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty:FireServer(d,
+                CFrame.new(PlotPos.X - 40, PlotPos.Y, PlotPos.Z - 80))
+        end
+    end
+end)
+
+local Tab = Window:NewTab("telports")
+
+local Section = Tab:NewSection("tps")
+
+Section:NewButton("WoodRUS", "tp", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(265, 5, 57)
+end)
+
+Section:NewButton("bobs shack", "tp", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(260, 8, -2542)
+end)
+
+Section:NewButton("boxed cars", "tp", function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(509, 5.2, -1463)
+end)
+
+Section:NewButton("your plot", "tp", function()
+ for i, v in pairs(game.Workspace.Properties:GetChildren()) do
+        if v.Owner.Value == game.Players.LocalPlayer then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.OriginSquare.CFrame
+        end
+    end
+end)
+
+local Section = Tab:NewSection("MORE COMING SOON!")
+
+local Tab = Window:NewTab("Credits")
+
+local Section = Tab:NewSection("Main")
+
+local Section = Tab:NewSection("Toxic Main dev owner")
+
+local Section = Tab:NewSection("CatCat dev")
+
+local Section = Tab:NewSection("Loopy Script Helper")
+
+local Tab = Window:NewTab("Settings")
+
+local Section = Tab:NewSection("Keybind")
+
+Section:NewKeybind("KeybindText", "KeybindInfo", Enum.KeyCode.F, function()
+	Library:ToggleUI()
+end)
+
