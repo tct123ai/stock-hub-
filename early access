@@ -1,10 +1,17 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = Library.CreateLib("early access STOCK hub", "BloodTheme")
+local Window = Library.CreateLib("STOCK hub early access", "BloodTheme")
 
 local Tab = Window:NewTab("auto farms")
 
 local Section = Tab:NewSection("auto farms")
+
+Section:NewButton("coins auto farm", "lttle broken", function()
+while true do
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.GameStorage.Coins.Coin.CFrame
+end
+end)
+
 
 Section:NewButton("ore auto farm", "get ores", function()
     local cpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
@@ -332,26 +339,11 @@ game.workspace.Borders.InvisibleBorder:remove()
 end)
 
 Section:NewButton("remove all kill borders", "remove", function()
-local plr = game:GetService('Players').LocalPlayer.Character
-local ScreenGui = Instance.new("ScreenGui")
-local OpenFrame = Instance.new("Frame")
-local Open = Instance.new("TextButton")
-local Frame = Instance.new("Frame")
-local BeautyA = Instance.new("Frame")
-local TextLabel = Instance.new("TextLabel")
-local BeautyA_2 = Instance.new("Frame")
-local TextLabel_2 = Instance.new("TextLabel")
-local AIM = Instance.new("TextButton")
-local CTP = Instance.new("TextButton")
-local Close = Instance.new("TextButton")
-local MI = Instance.new("TextButton")
-local MVIP = Instance.new("TextButton")
-local Plate = Instance.new("TextButton")
-local Shop = Instance.new("TextButton")
-local VIP = Instance.new("TextButton")
-local Walls = Instance.new("TextButton")
-
 game.workspace.Lobby.KillPlates:remove()
+end)
+
+Section:NewButton("remove group door", "you can go into group", function()
+game.workspace.GroupDoor:remove()
 end)
 
 Section:NewKeybind("toggle UI", "sigma sigma", Enum.KeyCode.F, function()
