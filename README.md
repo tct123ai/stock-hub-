@@ -1,3 +1,7 @@
+--functions
+
+        
+
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
 local Window = Library.CreateLib("STOCK hub", "BloodTheme")
@@ -8,6 +12,7 @@ local Section = Tab:NewSection("auto farms")
 
 Section:NewButton("coins auto farm", "lttle broken", function()
 while true do
+    wait(1)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.GameStorage.Coins.Coin.CFrame
 end
 end)
@@ -174,24 +179,7 @@ part.Anchored = true
 
 part.Size = Vector3.new(1000, 1, 1000)
     else
-        local plr = game:GetService('Players').LocalPlayer.Character
-local ScreenGui = Instance.new("ScreenGui")
-local OpenFrame = Instance.new("Frame")
-local Open = Instance.new("TextButton")
-local Frame = Instance.new("Frame")
-local BeautyA = Instance.new("Frame")
-local TextLabel = Instance.new("TextLabel")
-local BeautyA_2 = Instance.new("Frame")
-local TextLabel_2 = Instance.new("TextLabel")
-local AIM = Instance.new("TextButton")
-local CTP = Instance.new("TextButton")
-local Close = Instance.new("TextButton")
-local MI = Instance.new("TextButton")
-local MVIP = Instance.new("TextButton")
-local Plate = Instance.new("TextButton")
-local Shop = Instance.new("TextButton")
-local VIP = Instance.new("TextButton")
-local Walls = Instance.new("TextButton")
+
 
 game.workspace.Part:remove()
     end
@@ -209,11 +197,29 @@ for i, v in game.Players:GetPlayers() do
 end
 end)
 
+local Tab = Window:NewTab("mobile")
+
+local Section = Tab:NewSection("mobile")
+
+Section:NewToggle("auto clicker", "click", function(state)
+    if state then
+ ame:GetService('RunService').Stepped:Connect(function()
+    local player = game.Players.LocalPlayer
+    local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
+    if tool and tool:FindFirstChild("Handle") then
+        tool:Activate()
+        end
+end)
+    else
+
+    end
+end)
+
 local Tab = Window:NewTab("extra")
 
 local Section = Tab:NewSection("extra")
 
-Section:NewButton("ctrl + click to tp", "get ores", function()
+Section:NewButton("ctrl + click to tp", "tp", function()
 -- CTRL+CLICK TP
 local Plr = game:GetService("Players").LocalPlayer
 
@@ -350,11 +356,13 @@ Section:NewKeybind("toggle UI", "sigma sigma", Enum.KeyCode.F, function()
 	Library:ToggleUI()
 end)
 
--- Section:NewButton("remove all anti cheat", "remove", function()
---game.Players.LocalPlayer.PlayerGui.Extra.AntiSploitClient2:Destroy()
---	wait(1)
---	game.Players.LocalPlayer.PlayerGui.Extra.AntiSploitClient:Destroy()
--- end)
+--[[
+ Section:NewButton("remove all anti cheat", "remove", function()
+game.Players.LocalPlayer.PlayerGui.Extra.AntiSploitClient2:Destroy()
+	wait(1)
+	game.Players.LocalPlayer.PlayerGui.Extra.AntiSploitClient:Destroy()
+ end)
+--]]
 
 local Tab = Window:NewTab("tps")
 
@@ -682,7 +690,7 @@ end)
 
 local Tab = Window:NewTab("credits")
 
-local Section = Tab:NewSection("Loopy5418 code helped")
+local Section = Tab:NewSection("Loopy5418 code helper")
 
 local Section = Tab:NewSection("catcat main dev")
 
