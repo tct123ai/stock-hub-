@@ -25,9 +25,10 @@ local stuff = workspace:getDescendants()
 for i=1,#stuff do
 if stuff[i].Name == "Block" and stuff[i].Parent.Name == "Ores" then
 repeat
-wait()
+wait(1)
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = stuff[i].CFrame
 game.Players.LocalPlayer.Character.Axe.RemoteEvent:FireServer(stuff[i])
+wait(0.25)
 until stuff[i].Name ~= "Block" or not game.Players.LocalPlayer.Character:findFirstChild("Axe")
 end
 end
@@ -83,6 +84,35 @@ end)
 local Tab = Window:NewTab("player")
 
 local Section = Tab:NewSection("player")
+
+Section:NewToggle("scaffold", "brick", function(state)
+    if state then
+cat = true
+
+        while cat do
+    wait(0.1)
+
+
+local part = Instance.new("Part")
+
+part.BrickColor = BrickColor.new("Medium Stone Grey")
+
+part.CFrame = game.Players.LocalPlayer.Character["Right Leg"].CFrame
+
+part.Parent = game.workspace
+
+part.Anchored = true
+
+part.Size = Vector3.new(2, 1, 1)
+
+wait(0.1)
+game.workspace.Part:remove()
+end
+
+    else
+        cat = false
+    end
+end)
 
 Section:NewToggle("noclip", "gliched when off", function(state)
     if state then
@@ -201,18 +231,14 @@ local Tab = Window:NewTab("mobile")
 
 local Section = Tab:NewSection("mobile")
 
-Section:NewToggle("auto clicker", "click", function(state)
-    if state then
- ame:GetService('RunService').Stepped:Connect(function()
+Section:NewButton("auto clicker", "idk", function()
+game:GetService('RunService').Stepped:Connect(function()
     local player = game.Players.LocalPlayer
     local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
     if tool and tool:FindFirstChild("Handle") then
         tool:Activate()
         end
 end)
-    else
-
-    end
 end)
 
 local Tab = Window:NewTab("extra")
